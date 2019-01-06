@@ -7,7 +7,7 @@ using System.Windows.Forms;
 //            HotKeys.GlobalHotkey ghk;
 //            ghk = new HotKeys.GlobalHotkey(Constants.ALT + Constants.SHIFT, Keys.O, this);
 
-namespace ClickToCall
+namespace AMPDialer
 {
     static class Program
     {

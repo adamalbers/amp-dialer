@@ -7,8 +7,8 @@
     <ProjectGuid>{BD67058C-1AD3-490A-808C-EFE0FB9A2BD9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ClickToCall</RootNamespace>
-    <AssemblyName>ClickToCall</AssemblyName>
+    <RootNamespace>AMPDialer</RootNamespace>
+    <AssemblyName>AMPDialer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <IsWebBootstrapper>false</IsWebBootstrapper>

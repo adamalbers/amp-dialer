@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.InteropServices;
 using System.Threading;
-using ClickToCall.Properties;
+using AMPDialer.Properties;
 
-namespace ClickToCall
+namespace AMPDialer
 {
     static class Keyboard
     {

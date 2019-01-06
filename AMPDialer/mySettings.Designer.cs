@@ -1,4 +1,4 @@
-﻿namespace ClickToCall
+﻿namespace AMPDialer
 {
     partial class mySettings
     {

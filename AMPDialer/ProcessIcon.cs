@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net;
-using ClickToCall.Properties;
+using AMPDialer.Properties;
 
-namespace ClickToCall
+namespace AMPDialer
 {
     class ProcessIcon : IDisposable
     {
@@ -25,7 +25,7 @@ namespace ClickToCall
         public void Display()
         {
             ni.MouseClick += new MouseEventHandler(ni_MouseClick);
-            ni.Icon = Resources.ClickToCall;
+            ni.Icon = Resources.AMPDialer;
             ni.Text = "AMP Dialer";
             ni.Visible = true;
 

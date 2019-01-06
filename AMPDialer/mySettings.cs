@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Microsoft.Win32;
 using MOBZystems;
 
-namespace ClickToCall
+namespace AMPDialer
 {
     public partial class mySettings : Form
     {
@@ -18,7 +18,7 @@ namespace ClickToCall
         {
             InitializeComponent();
             getData();
-            string REGROOT = "SOFTWARE\\ClickToCall\\";
+            string REGROOT = "SOFTWARE\\AMPDialer\\";
             RegistryKey root = Registry.CurrentUser.CreateSubKey(REGROOT);
             string hotkeyString = (string)root.GetValue("Hotkey", "C");
             bool shiftKey = BoolFromString((string)root.GetValue("Shift", "1"));
@@ -35,27 +35,27 @@ namespace ClickToCall
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "API_KEY", API_KEY_TXT.Text);
-            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "DOMAIN_TXT", DOMAIN_TXT.Text);
-            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "SRC_TXT", SRC_TXT.Text);
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", API_KEY_TXT.Text);
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", DOMAIN_TXT.Text);
+            Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", SRC_TXT.Text);
             if(autoAnswer.Checked)
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "AUTO_ANSWER", "true");
+                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "true");
             else
-                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "AUTO_ANSWER", "false");
+                Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "false");
 
             RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
             if (startOnBoot.Checked)
-                rk.SetValue("ClickToCall", Application.ExecutablePath.ToString());
+                rk.SetValue("AMPDialer", Application.ExecutablePath.ToString());
             else
-                rk.DeleteValue("ClickToCall", false);
+                rk.DeleteValue("AMPDialer", false);
             this.Close();
         }
 
         private void getData()
         {
             RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            string startRK = rk.GetValue("ClickToCall","null").ToString();
+            string startRK = rk.GetValue("AMPDialer","null").ToString();
             if (startRK != "null")
             {
                 startOnBoot.Checked = true;
@@ -63,11 +63,11 @@ namespace ClickToCall
             string API_KEY = "NULL";
             string DOMAIN_URL = "NULL";
             string SRC = "NULL";
-            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "API_KEY", "NULL").ToString(); }
+            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", "NULL").ToString(); }
             catch { API_KEY = "NULL"; }
-            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "DOMAIN_TXT", "NULL").ToString(); }
+            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", "NULL").ToString(); }
             catch { DOMAIN_URL = "NULL"; }
-            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "SRC_TXT", "NULL").ToString(); }
+            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", "NULL").ToString(); }
             catch { SRC = "NULL"; }
             if (DOMAIN_URL != "NULL")
             {

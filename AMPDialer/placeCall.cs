@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
-using ClickToCall.Properties;
+using AMPDialer.Properties;
 using System.Net;
 using System.Windows.Forms;
 using System.Threading;
@@ -14,7 +14,7 @@ using System.Windows.Automation;
 using System.Windows;
 using System.Text.RegularExpressions;
 
-namespace ClickToCall
+namespace AMPDialer
 {
     class PlaceCall
     {
@@ -27,18 +27,18 @@ namespace ClickToCall
             string SRC = null;
             //string DEST = null;
             string AUTO_ANSWER = null;
-            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "API_KEY", null).ToString(); }
+            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", null).ToString(); }
             catch { API_KEY = null; }
-            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "DOMAIN_TXT", null).ToString(); }
+            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", null).ToString(); }
             catch { DOMAIN_URL = null; }
-            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "SRC_TXT", null).ToString(); }
+            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", null).ToString(); }
             catch { SRC = null; }
-            try { AUTO_ANSWER = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\ClickToCall", "AUTO_ANSWER", "false").ToString(); }
+            try { AUTO_ANSWER = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "false").ToString(); }
             catch { AUTO_ANSWER = "false"; }
 
             if (DOMAIN_URL == null || API_KEY == null || SRC == null)
             {
-                ni.ShowBalloonTip(5000, "ERROR!", "Please setup your settings first", ToolTipIcon.Info);
+                ni.ShowBalloonTip(5000, "ERROR!", "Please right-click the tray icon and configure your settings first.", ToolTipIcon.Info);
             }
             else if (DEST == null)
             {
