@@ -14,12 +14,12 @@ namespace AMPDialer
         public void f_placeCall(NotifyIcon ni)
         {
             string DEST = getDID();
-
+            string PRETTY_PHONE_NUMBER = null;
             string API_KEY = null;
             string DOMAIN_URL = null;
             string SRC = null;
-            //string DEST = null;
             string AUTO_ANSWER = null;
+
             try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", null).ToString(); }
             catch { API_KEY = null; }
             try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", null).ToString(); }
@@ -33,17 +33,28 @@ namespace AMPDialer
             {
                 ni.ShowBalloonTip(5000, "ERROR!", "Please right-click the tray icon and configure your settings first.", ToolTipIcon.Info);
             }
-            else if (DEST == null)
+            else if (DEST == "")
             {
                 ni.ShowBalloonTip(5000, "ERROR!", "Could not find a phone number to call.", ToolTipIcon.Info);
             }
+            else if (DEST.Length <10 || DEST.Length >11)
+            {
+                ni.ShowBalloonTip(5000, "ERROR!", "Please select a 10 or 11 digit number to dial.", ToolTipIcon.Info);
+            }
             else
             {
+                if (DEST.Length == 10)
+                {
+                    PRETTY_PHONE_NUMBER = Regex.Replace(DEST, @"(\d{3})(\d{3})(\d{4})", "($1) $2-$3");
+                }
+                if (DEST.Length == 11)
+                {
+                    PRETTY_PHONE_NUMBER = Regex.Replace(DEST, @"(\d{1})(\d{3})(\d{3})(\d{4})", "$1 ($2) $3-$4");
+                }
                 string URL = "https://" + DOMAIN_URL + "/app/click_to_call/click_to_call.php?domain=" + DOMAIN_URL + "&key=" + API_KEY + "&src=" + SRC + "&dest=" + DEST + "&auto_answer=" + AUTO_ANSWER + "&src_cid_name=" + DEST + "&src_cid_number=" + DEST + "";
-                ni.ShowBalloonTip(5000, "Calling...", Regex.Replace(DEST,@"(\d{3})(\d{3})(\d{4})","($1) $2-$3"), ToolTipIcon.Info);
+                ni.ShowBalloonTip(5000, "Calling...", PRETTY_PHONE_NUMBER, ToolTipIcon.Info);
                 var cli = new WebClient();
                 string data = cli.DownloadString(URL);
-                //MessageBox.Show(data);
             }
         }
 
