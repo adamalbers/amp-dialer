@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.startOnBoot = new System.Windows.Forms.CheckBox();
+            this.startOnLogon = new System.Windows.Forms.CheckBox();
             this.autoAnswer = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
@@ -98,15 +98,15 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // startOnBoot
+            // startOnLogon
             // 
-            this.startOnBoot.AutoSize = true;
-            this.startOnBoot.Location = new System.Drawing.Point(147, 103);
-            this.startOnBoot.Name = "startOnBoot";
-            this.startOnBoot.Size = new System.Drawing.Size(90, 17);
-            this.startOnBoot.TabIndex = 7;
-            this.startOnBoot.Text = "Start On Boot";
-            this.startOnBoot.UseVisualStyleBackColor = true;
+            this.startOnLogon.AutoSize = true;
+            this.startOnLogon.Location = new System.Drawing.Point(147, 103);
+            this.startOnLogon.Name = "startOnLogon";
+            this.startOnLogon.Size = new System.Drawing.Size(98, 17);
+            this.startOnLogon.TabIndex = 7;
+            this.startOnLogon.Text = "Start On Logon";
+            this.startOnLogon.UseVisualStyleBackColor = true;
             // 
             // autoAnswer
             // 
@@ -124,7 +124,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.autoAnswer);
-            this.Controls.Add(this.startOnBoot);
+            this.Controls.Add(this.startOnLogon);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -149,7 +149,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.CheckBox startOnBoot;
+        private System.Windows.Forms.CheckBox startOnLogon;
         private System.Windows.Forms.CheckBox autoAnswer;
     }
 }

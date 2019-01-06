@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Win32;
-using AMPDialer.Properties;
 using System.Net;
 using System.Windows.Forms;
 using System.Threading;
 using System.Windows.Automation;
-//using System.Runtime.InteropServices;
-//using System.Windows.Interop;
-using System.Windows;
 using System.Text.RegularExpressions;
 
 namespace AMPDialer
@@ -53,6 +46,7 @@ namespace AMPDialer
                 //MessageBox.Show(data);
             }
         }
+
         private string getDID()
         {
             string selectedText = null;

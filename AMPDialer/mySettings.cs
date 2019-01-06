@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Win32;
-using MOBZystems;
 
 namespace AMPDialer
 {
@@ -17,7 +10,7 @@ namespace AMPDialer
         public mySettings()
         {
             InitializeComponent();
-            getData();
+            GetData();
             string REGROOT = "SOFTWARE\\AMPDialer\\";
             RegistryKey root = Registry.CurrentUser.CreateSubKey(REGROOT);
             string hotkeyString = (string)root.GetValue("Hotkey", "C");
@@ -43,41 +36,47 @@ namespace AMPDialer
             else
                 Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "false");
 
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            RegistryKey regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
 
-            if (startOnBoot.Checked)
-                rk.SetValue("AMPDialer", Application.ExecutablePath.ToString());
+            if (startOnLogon.Checked)
+                regKey.SetValue("AMPDialer", Application.ExecutablePath.ToString());
             else
-                rk.DeleteValue("AMPDialer", false);
+                regKey.DeleteValue("AMPDialer", false);
             this.Close();
         }
 
-        private void getData()
+        private void GetData()
         {
-            RegistryKey rk = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            string startRK = rk.GetValue("AMPDialer","null").ToString();
-            if (startRK != "null")
+            RegistryKey regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
+            string startRegKey = regKey.GetValue("AMPDialer","null").ToString();
+            if (startRegKey != null)
             {
-                startOnBoot.Checked = true;
+                startOnLogon.Checked = true;
             }
-            string API_KEY = "NULL";
-            string DOMAIN_URL = "NULL";
-            string SRC = "NULL";
-            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", "NULL").ToString(); }
-            catch { API_KEY = "NULL"; }
-            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", "NULL").ToString(); }
-            catch { DOMAIN_URL = "NULL"; }
-            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", "NULL").ToString(); }
-            catch { SRC = "NULL"; }
-            if (DOMAIN_URL != "NULL")
+            regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\AMPDialer", true);
+            string autoAnswerRegKey = regKey.GetValue("AUTO_ANSWER", "null").ToString();
+            if (autoAnswerRegKey != null)
+            {
+                autoAnswer.Checked = true;
+            }
+            string API_KEY = null;
+            string DOMAIN_URL = null;
+            string SRC = null;
+            try { API_KEY = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", null).ToString(); }
+            catch { API_KEY = null; }
+            try { DOMAIN_URL = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", null).ToString(); }
+            catch { DOMAIN_URL = null; }
+            try { SRC = Registry.GetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", null).ToString(); }
+            catch { SRC = null; }
+            if (DOMAIN_URL != null)
             {
                 this.DOMAIN_TXT.Text = DOMAIN_URL.ToString();
             }
-            if (API_KEY != "NULL")
+            if (API_KEY != null)
             {
                 this.API_KEY_TXT.Text = API_KEY.ToString();
             }
-            if (SRC != "NULL")
+            if (SRC != null)
             {
                 this.SRC_TXT.Text = SRC.ToString();
             }
