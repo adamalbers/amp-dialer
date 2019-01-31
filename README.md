@@ -18,7 +18,7 @@ You should see a popup in the lower right corner saying *“Calling…”* with 
 Your extension will ring.
 Pick up the phone and it will start dialing out.
 
-
+The **Installer** folder has a project to build an MSI for easy distribution to your employees, if desired.
 
 
 *No updates or new features planned. This was simply updated for company use. Feel free to use it at your own risk."
