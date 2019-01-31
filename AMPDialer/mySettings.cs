@@ -38,7 +38,7 @@ namespace AMPDialer
             Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "API_KEY", API_KEY_TXT.Text);
             Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "DOMAIN_TXT", DOMAIN_TXT.Text);
             Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "SRC_TXT", SRC_TXT.Text);
-            if(autoAnswer.Checked)
+            if (autoAnswer.Checked)
                 Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "true");
             else
                 Registry.SetValue(@"HKEY_CURRENT_USER\SOFTWARE\AMPDialer", "AUTO_ANSWER", "false");
@@ -55,16 +55,29 @@ namespace AMPDialer
         private void GetData()
         {
             RegistryKey regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", true);
-            string startRegKey = regKey.GetValue("AMPDialer","null").ToString();
+            string startRegKey = null;
+            try { startRegKey = regKey.GetValue("AMPDialer", null).ToString(); }
+            catch { startRegKey = "false"; }
+
             if (startRegKey != null)
             {
                 startOnLogon.Checked = true;
             }
+            else
+            {
+                startOnLogon.Checked = false;
+            }
             regKey = Registry.CurrentUser.OpenSubKey("SOFTWARE\\AMPDialer", true);
-            string autoAnswerRegKey = regKey.GetValue("AUTO_ANSWER", "null").ToString();
-            if (autoAnswerRegKey != null)
+            string autoAnswerRegKey = null;
+            try {  autoAnswerRegKey = regKey.GetValue("AUTO_ANSWER", "false").ToString(); }
+            catch { autoAnswerRegKey = "false"; }
+            if (autoAnswerRegKey == "true")
             {
                 autoAnswer.Checked = true;
+            }
+            else
+            {
+                autoAnswer.Checked = false;
             }
             string API_KEY = null;
             string DOMAIN_URL = null;

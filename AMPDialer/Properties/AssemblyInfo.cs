@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("AMP Dialer")]
-[assembly: AssemblyDescription("Highlight a phone number in any application, then press CTRL-SHFT-C to call that number.\r\n\r\nCustomized from https://github.com/blackc2004/fusionpbx-AMPDialer")]
+[assembly: AssemblyDescription("Highlight a phone number in any application, then press CTRL-SHFT-C to call that number.\r\n\r\nCustomized from https://github.com/blackc2004/fusionpbx-clicktocall")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("AMP Systems, LLC")]
 [assembly: AssemblyProduct("AMP Dialer")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
