@@ -21,7 +21,7 @@ Pick up the phone and it will start dialing out.
 The **Installer** folder has a project to build an MSI for easy distribution to your employees, if desired.
 
 
-*No updates or new features planned. This was simply updated for company use. Feel free to use it at your own risk."
+*No updates or new features planned. This was simply updated for company use. Feel free to use it at your own risk.*
 
 
 Installer Binaries: https://github.com/adamalbers/amp-dialer/tree/master/Installer/AMP%20Dialer%20Setup/Release
